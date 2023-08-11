@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './tree.css';
 import App from './App';
-import init, { NBT } from 'nbtrock';
-await init();
+import { NBT } from 'nbtrock';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <App
     nbt={

@@ -12,7 +12,6 @@ body {
 
 .tree {
   flex: 1;
-  overflow: none;
   padding: 4px 0;
   position: relative;
   width: 100%;
@@ -51,7 +50,7 @@ body {
   height: 16px;
   width: 16px;
   display: inline-block;
-  background-image: url('tag.png');
+  background-image: url('./img/tag.png');
   background-size: 64px;
   margin-right: 10px;
 }
