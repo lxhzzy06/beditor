@@ -1,0 +1,14 @@
+.file {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  padding: 20px;
+}
+
+#upload {
+    display: flex;
+}
+
+.generate {
+    margin-left: 20px;
+}
