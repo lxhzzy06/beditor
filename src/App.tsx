@@ -4,7 +4,7 @@ import './Item/item.css';
 import './file.css';
 import { Compound, DeserializeCompound } from './Item/Compound';
 import fileDownload from 'js-file-download';
-init().then();
+await init();
 
 export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler<HTMLElement> }) {
   const [Root, setRoot] = useState(props.nbt);
