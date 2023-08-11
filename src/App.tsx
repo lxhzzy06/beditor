@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import init, { NBT } from 'nbtrock';
 import './Item/item.css';
 import './file.css';
@@ -7,6 +7,7 @@ import fileDownload from 'js-file-download';
 await init();
 
 export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler<HTMLElement> }) {
+  const file_name = useRef('');
   const [Root, setRoot] = useState(props.nbt);
   const [Header, setHeader] = useState(false);
 
@@ -24,7 +25,9 @@ export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler
             id="file-input"
             accept=".nbt, .mcstructure"
             onChange={async (e) => {
-              const uint8 = new Uint8Array(await (e.currentTarget as HTMLInputElement).files![0].slice().arrayBuffer());
+              const file = (e.currentTarget as HTMLInputElement).files![0];
+              const uint8 = new Uint8Array(await file.slice().arrayBuffer());
+              file_name.current = file.name;
               setRoot(NBT.from(uint8));
             }}
           />
@@ -34,7 +37,7 @@ export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler
             onClick={() => {
               const [name, data] = DeserializeCompound(document.getElementById('tree')!.firstChild! as HTMLDetailsElement);
               const _new = new NBT({ name, data });
-              fileDownload(_new.bytes(Header), name === '' ? 'nbtrock' : name + '.nbt');
+              fileDownload(_new.bytes(Header), name === '' ? (file_name.current !== '' ? file_name.current : 'nbtrock') : name + '.nbt');
               setRoot(_new);
             }}
           >
