@@ -37,13 +37,11 @@ export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler
             onClick={() => {
               const [name, data] = DeserializeCompound(document.getElementById('tree')!.firstChild! as HTMLDetailsElement);
               const _new = new NBT({ name, data });
-              console.log(file_name.current);
-
-              fileDownload(_new.bytes(Header), name === '' ? (file_name.current !== '' ? file_name.current : 'beditor') : name + '.nbt');
+              fileDownload(_new.bytes(Header), name === '' ? (file_name.current !== '' ? file_name.current : 'beditor.nbt') : name + '.nbt');
               setRoot(_new);
             }}
           >
-            生成NBT文件
+            生成二进制文件
           </button>
           <button
             id="generate_text"
