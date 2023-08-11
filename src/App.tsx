@@ -37,7 +37,9 @@ export default function App(props: { nbt: NBT; onChange?: React.FormEventHandler
             onClick={() => {
               const [name, data] = DeserializeCompound(document.getElementById('tree')!.firstChild! as HTMLDetailsElement);
               const _new = new NBT({ name, data });
-              fileDownload(_new.bytes(Header), name === '' ? (file_name.current !== '' ? file_name.current : 'nbtrock') : name + '.nbt');
+              console.log(file_name.current);
+
+              fileDownload(_new.bytes(Header), name === '' ? (file_name.current !== '' ? file_name.current : 'beditor') : name + '.nbt');
               setRoot(_new);
             }}
           >
